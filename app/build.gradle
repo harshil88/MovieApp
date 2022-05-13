@@ -52,6 +52,8 @@ dependencies {
 
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
+    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.4.0'
+
     //Moshi
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
