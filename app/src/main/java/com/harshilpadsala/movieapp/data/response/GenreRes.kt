@@ -4,7 +4,7 @@ package com.harshilpadsala.movieapp.data.response
 import com.squareup.moshi.JsonClass
 
 data class GenreMainResponse(
-    val genres : List<Genre>
+    val genres : List<GenreRes>
 )
 
 data class GenreRes(

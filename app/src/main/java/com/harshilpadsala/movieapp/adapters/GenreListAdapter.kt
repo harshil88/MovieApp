@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.harshilpadsala.movieapp.R
 import com.harshilpadsala.movieapp.data.response.Genre
+import com.harshilpadsala.movieapp.data.response.GenreRes
 import com.harshilpadsala.movieapp.databinding.CategoryTileBinding
 
 
@@ -14,11 +15,10 @@ class GenreListAdapter : RecyclerView.Adapter<GenreListAdapter.GenreListViewHold
     var imageUrl : Uri = Uri.parse("android.resource//com.harshilpadsala.movieapp/" + R.drawable.loaderimage)
 
 
-    private var genres : List<Genre>  = MutableList(20){
-        Genre(
+     var genres : List<GenreRes>  = MutableList(20){
+        GenreRes(
             -1,
             "No Genre",
-            ""
         )
     }
 
@@ -30,7 +30,7 @@ class GenreListAdapter : RecyclerView.Adapter<GenreListAdapter.GenreListViewHold
     inner class GenreListViewHolder(private val binding: CategoryTileBinding):
         RecyclerView.ViewHolder(binding.root){
         val genreName = binding.categoryName
-        val genreImage = binding.categoryImage
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenreListViewHolder {
@@ -46,11 +46,7 @@ class GenreListAdapter : RecyclerView.Adapter<GenreListAdapter.GenreListViewHold
     @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: GenreListViewHolder , position: Int) {
 
-        holder.genreName.text = genres[position].imageUrl
-
-        GlideApp.with(holder.genreImage.context).load(genres[position].imageUrl)
-            .placeholder(R.drawable.loaderimage).into(holder.genreImage)
-
+        holder.genreName.text = genres[position].name
     }
 
     override fun getItemCount(): Int {

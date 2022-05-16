@@ -7,6 +7,8 @@ object Endpoint {
     const val UPCOMING_MOVIES = "movie/upcoming"
     const val GENRE = "genre/movie/list"
 
+    const val DISCOVER_MOVIE_BY_SINGLE_GENRE = "discover/movie"
+
     const val IMAGE_INITIAL_URL = "https://image.tmdb.org/t/p/w500"
 
 }

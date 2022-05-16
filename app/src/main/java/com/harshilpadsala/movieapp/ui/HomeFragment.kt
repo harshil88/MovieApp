@@ -40,27 +40,11 @@ class HomeFragment : Fragment() {
             discoverMovieRV.adapter = adapterD
         }
         viewModel.response.observe(viewLifecycleOwner, Observer {
-            when (it.first) {
-                0 -> {
-                    adapterD.setFetchedData(it.second)
-                    viewModel.fetchTopRatedMovies()
-                    Log.i("MovieDebug", "Discover Movies is running")
-                    Log.i("MovieDebug", it.toString())
-                }
-
-                1 -> {
-                    adapterT.setFetchedData(it.second)
-                    viewModel.fetchUpcomingMovies()
-                    Log.i("MovieDebug", "Top-rated Movies is running")
-                    Log.i("MovieDebug", it.toString())
-                }
-
-                2 -> {
-                    adapterU.setFetchedData(it.second)
-                    Log.i("MovieDebug", "Upcoming Movies is running")
-                    Log.i("MovieDebug", it.toString())
-                }
-            }
+           when(viewModel.response.value?.first){
+               0 -> adapterT.setFetchedData(viewModel.response.value!!.second)
+               1 -> adapterU.setFetchedData(viewModel.response.value!!.second)
+               2 -> adapterD.setFetchedData(viewModel.response.value!!.second)
+           }
           }
         )
     }
