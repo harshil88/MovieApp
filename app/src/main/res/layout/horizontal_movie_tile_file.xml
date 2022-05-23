@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,11 +33,11 @@
             <TextView
                 android:id="@+id/movie_name"
                 style="@style/headerTextStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="181dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="16dp"
                 android:text="Dune"
-                android:textSize="34sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/movie_poster"
                 app:layout_constraintTop_toTopOf="@+id/movie_poster" />
@@ -53,5 +53,5 @@
 
             </com.google.android.material.chip.ChipGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </layout>

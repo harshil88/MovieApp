@@ -11,7 +11,9 @@ import com.harshilpadsala.movieapp.data.response.GenreRes
 import com.harshilpadsala.movieapp.databinding.CategoryTileBinding
 
 
-class GenreListAdapter : RecyclerView.Adapter<GenreListAdapter.GenreListViewHolder>() {
+class GenreListAdapter(
+    private val onItemClicked: (genre : GenreRes) -> Unit
+) : RecyclerView.Adapter<GenreListAdapter.GenreListViewHolder>() {
     var imageUrl : Uri = Uri.parse("android.resource//com.harshilpadsala.movieapp/" + R.drawable.loaderimage)
 
 
@@ -22,15 +24,12 @@ class GenreListAdapter : RecyclerView.Adapter<GenreListAdapter.GenreListViewHold
         )
     }
 
-
-
     private lateinit var binding: CategoryTileBinding
 
 
     inner class GenreListViewHolder(private val binding: CategoryTileBinding):
         RecyclerView.ViewHolder(binding.root){
         val genreName = binding.categoryName
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GenreListViewHolder {
@@ -45,7 +44,9 @@ class GenreListAdapter : RecyclerView.Adapter<GenreListAdapter.GenreListViewHold
 
     @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: GenreListViewHolder , position: Int) {
-
+        binding.categoryTile.setOnClickListener {
+            onItemClicked(genres[position])
+        }
         holder.genreName.text = genres[position].name
     }
 
@@ -53,4 +54,8 @@ class GenreListAdapter : RecyclerView.Adapter<GenreListAdapter.GenreListViewHold
         return genres.size
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 }
+

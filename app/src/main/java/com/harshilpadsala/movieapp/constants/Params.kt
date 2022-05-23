@@ -6,4 +6,8 @@ object Params {
 
     const val URL = "https://api.themoviedb.org/3/"
 
+    const val VIEW_TYPE_NORMAL = 1
+
+    const val VIEW_TYPE_PROGRESS_BAR = 2
+
 }

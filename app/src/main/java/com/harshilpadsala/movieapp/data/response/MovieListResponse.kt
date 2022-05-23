@@ -8,8 +8,8 @@ data class ListResponse(
 data class MovieResponse(
     val original_title: String,
     val overview : String,
-    val poster_path : String,
-    val release_date : String,
+    val poster_path : String?,
+    val release_date : String?,
     val vote_average: Double,
     val vote_count : Long,
     val genre_ids : List<Int>,

@@ -11,4 +11,5 @@ object Endpoint {
 
     const val IMAGE_INITIAL_URL = "https://image.tmdb.org/t/p/w500"
 
+
 }

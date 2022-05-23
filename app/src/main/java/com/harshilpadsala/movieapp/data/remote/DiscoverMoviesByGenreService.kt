@@ -12,7 +12,8 @@ interface DiscoverMoviesByGenreService {
     @GET(Endpoint.DISCOVER_MOVIE_BY_SINGLE_GENRE)
     suspend fun getSelectedGenre(
         @Query("api_key") apiKey : String,
-        @Query("with_geres") genres : String,
+        @Query("with_genres") genres : String,
+        @Query("page") page : String,
     ) : ListResponse
 
 }

@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        //TO change
         return binding.root
     }
 
@@ -34,6 +34,9 @@ class HomeFragment : Fragment() {
         val adapterD = MovieListAdapter()
         val adapterT = MovieListAdapter()
         val adapterU = MovieListAdapter()
+
+        binding.viewModel = viewModel
+
         binding.apply {
             topRatedMovieRV.adapter = adapterT
             upcomingMovieRV.adapter = adapterU
