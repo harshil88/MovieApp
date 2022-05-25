@@ -17,7 +17,6 @@ class GenrePageViewModel : ViewModel() , KoinComponent {
 
     private val genreService : GenreService by inject()
 
-
     private val _response = MutableLiveData<List<GenreRes>>()
     val response: LiveData< List<GenreRes>>
         get() = _response

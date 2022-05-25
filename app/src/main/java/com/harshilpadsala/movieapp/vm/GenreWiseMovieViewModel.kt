@@ -8,8 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.harshilpadsala.movieapp.constants.Params
 import com.harshilpadsala.movieapp.data.remote.DiscoverMoviesByGenreService
 import com.harshilpadsala.movieapp.data.response.MovieResponse
-import com.harshilpadsala.movieapp.ui.GenreWiseMovieListFragmentArgs
-import kotlinx.coroutines.delay
+import com.harshilpadsala.movieapp.state.ResponseState
+import com.harshilpadsala.movieapp.state.ScrollState
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -21,7 +21,8 @@ class GenreWiseMovieViewModel(
     private val movieByGenreService : DiscoverMoviesByGenreService by inject()
     private val _response = MutableLiveData<List<MovieResponse>>()
 
-    var shouldUpdateMoviesList = false
+    var state: ResponseState = ResponseState.Loading
+     var scrollState: ScrollState = ScrollState.ReachedTop
 
     val response: LiveData<List<MovieResponse>>
         get() = _response
@@ -45,12 +46,10 @@ class GenreWiseMovieViewModel(
             runCatching {
                 var movies = movieByGenreService.getSelectedGenre(Params.API_KEY, genreId.toString() , currPage.toString())
                 _response.postValue(movies.results)
-
-                Log.i("HDebug" , movies.toString())
-                Log.i("HDebug" , "NCG")
-            }.onFailure {
-                Log.i("HDebug" , it.toString())
-                _response.postValue(listOf())
+                state = ResponseState.Success
+                scrollState = ScrollState.Scrolling
+            }.onFailure{
+                Log.i("ErDebug", it.toString())
             }
         }
     }
