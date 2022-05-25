@@ -2,6 +2,7 @@ package com.harshilpadsala.movieapp
 
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.harshilpadsala.movieapp.constants.Params
+import com.harshilpadsala.movieapp.helper.ConnectivityHelper
 import com.harshilpadsala.movieapp.receiver.BluetoothReceiver
 import com.harshilpadsala.movieapp.services.DumbService
 import com.harshilpadsala.movieapp.services.MusicService
@@ -39,8 +41,11 @@ MusicPlayDialogFragment.MusicPlayDialogListener{
         val intent = Intent(this, NotificationServiceDE::class.java)
         startService(intent)
         val intentF = IntentFilter()
-        registerReceiver(BluetoothReceiver(
-        ) , intentF)
+        val connectivityManager = getSystemService(ConnectivityManager::class.java)
+        connectivityManager.requestNetwork(
+            ConnectivityHelper.getNetworkRequest(),
+            ConnectivityHelper.networkCallback,
+        )
     }
 
 
@@ -49,12 +54,10 @@ MusicPlayDialogFragment.MusicPlayDialogListener{
         lifecycleScope.launch {
             delay(20000)
             dialogFragment.show(supportFragmentManager, "game")
-            Log.i("DD" , "Dialog called")
         }
     }
 
     override fun onDialogPositiveClick(dialogFragment: DialogFragment) {
-
     }
 
 
